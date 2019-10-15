@@ -145,6 +145,7 @@ module.exports = exports = function looksSame(image1, image2, opts, callback) {
     opts = prepareOpts(opts);
     [image1, image2] = utils.formatImages(image1, image2);
 
+
     utils.readPair(image1, image2, (error, pair) => {
         if (error) {
             return callback(error);
@@ -161,11 +162,11 @@ module.exports = exports = function looksSame(image1, image2, opts, callback) {
 
         const comparator = createComparator(first, second, opts);
         const {stopOnFirstFail, shouldCluster, clustersSize} = opts;
-
-        getDiffPixelsCoords(first, second, comparator, {stopOnFirstFail, shouldCluster, clustersSize}, ({diffArea, diffClusters}) => {
+      
+        getDiffPixelsCoords(first, second, comparator, {stopOnFirstFail, shouldCluster, clustersSize}, ({diffArea, diffClusters, compareInfo}) => {
             const diffBounds = diffArea.area;
 
-            callback(null, {equal: diffArea.isEmpty(), metaInfo, diffBounds, diffClusters});
+            callback(null, {equal: diffArea.isEmpty(), metaInfo, diffBounds, diffClusters, compareInfo});
         });
     });
 };
