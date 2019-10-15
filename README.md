@@ -12,8 +12,10 @@ for other purposes.
 ```javascript
 var looksSame = require('looks-same');
 
-looksSame('image1.png', 'image2.png', function(error, {equal}) {
+looksSame('image1.png', 'image2.png', function(error, {equal,compareInfo}) {
     // equal will be true, if images looks the same
+    // compareInfo.similarity 图片相似度  
+    // compareInfo.similarity > 98 认为是相同的图片
 });
 ```
 
