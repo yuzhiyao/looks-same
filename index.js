@@ -155,7 +155,7 @@ module.exports = exports = function looksSame(image1, image2, opts, callback) {
         const refImg = {size: {width: first.width, height: first.height}};
         const metaInfo = {refImg};
 
-        if (first.width !== second.width || first.height !== second.height) {
+        if ( Math.abs((first.width - second.width)) > 5 || Math.abs((first.height - second.height)) > 5) {
             const diffBounds = getMaxDiffBounds(first, second);
             return process.nextTick(() => callback(null, {equal: false, metaInfo, diffBounds, diffClusters: [diffBounds]}));
         }

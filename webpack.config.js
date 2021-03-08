@@ -17,12 +17,16 @@ module.exports = {
     // 所有输出文件的目标路径
     // 必须是绝对路径（使用 Node.js 的 path 模块）
 
-    filename: "looksSame.min.js", // string    // 「入口分块(entry chunk)」的文件名模板（出口分块？）
+    filename: process.env.NODE_ENV === 'production' ? "looksSame.min.js" : "looksSame.js", // string    // 「入口分块(entry chunk)」的文件名模板（出口分块？）
 
     library: "looksSame", // string,
     // 导出库(exported library)的名称
 
     libraryTarget: "commonjs", // 通用模块定义    // 导出库(exported library)的类型
+  },
+
+  optimization: {
+    minimize: process.env.NODE_ENV === 'production'? true : false
   },
 
   module: {

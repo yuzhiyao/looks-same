@@ -34,7 +34,9 @@
     "webpack": "^4.41.1"
   },
   "scripts": {
-    "dist": "webpack --config webpack.config.js",
+    "dist:production": "cross-env NODE_ENV='production' && webpack --config webpack.config.js",
+    "dist:development": "cross-env NODE_ENV='development' && webpack --config webpack.config.js",
+    "dist": "npm run dist:development && npm run dist:production",
     "test-unit": "mocha",
     "lint": "eslint .",
     "test": "npm run test-unit && npm run lint",
